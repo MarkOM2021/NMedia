@@ -94,7 +94,7 @@
         android:contentDescription="@string/numbers_of_likes"
         app:layout_constraintStart_toStartOf="@id/post_content"
         app:layout_constraintTop_toBottomOf="@id/barrierToLikes"
-        app:srcCompat="@drawable/ic_baseline_favorite_border_24"
+        tools:srcCompat="@drawable/ic_baseline_favorite_border_24"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
@@ -116,7 +116,7 @@
         android:contentDescription="@string/shared_numbers"
         app:layout_constraintStart_toEndOf="@id/likes_number"
         app:layout_constraintTop_toBottomOf="@id/barrierToLikes"
-        app:srcCompat="@drawable/ic_baseline_share_24"
+        tools:srcCompat="@drawable/ic_baseline_share_24"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
@@ -149,6 +149,5 @@
         app:layout_constraintTop_toBottomOf="@id/barrierToLikes"
         app:srcCompat="@drawable/ic_baseline_visibility_24"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
