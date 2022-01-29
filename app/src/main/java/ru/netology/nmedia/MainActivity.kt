@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             }
             likeCount?.text = post.likes.toString()
 
-            root.setOnClickListener {
+            /*root.setOnClickListener {
                 Log.d("stuff", "BindRoot")
             }
 
@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
             avatar.setOnClickListener {
                 Log.d("stuff", "avatar")
             }
+            */
 
             like?.setOnClickListener {
                 Log.d("stuff", "like")
