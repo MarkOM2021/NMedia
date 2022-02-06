@@ -3,7 +3,7 @@ package ru.netology.nmedia.activity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import ru.netology.nmedia.activity.adapter.PostsAdapter
+import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.viewModel.PostViewModel
 import java.text.DecimalFormat
@@ -15,10 +15,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val viewModel: PostViewModel by viewModels()
-        val adapter = PostsAdapter {
-            viewModel.likedByID(it.id)
-            viewModel.sharedByID(it.id)
-        }
+        val adapter = PostsAdapter(
+            onLikeListener = {
+                viewModel.likedByID(it.id)
+            },
+            onShareListener = {
+                viewModel.sharedByID(it.id)
+            }
+        )
         binding.root.adapter = adapter
         viewModel.data.observe(this, adapter::submitList)
     }
