@@ -2,6 +2,7 @@ package ru.netology.nmedia.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,20 +11,21 @@ import ru.netology.nmedia.activity.eventNumberFormatter
 import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
 
-typealias OnLikeListener = (Post) -> Unit
-typealias OnShareListener = (Post) -> Unit
+interface ActionListener {
+    fun onLike(post: Post) {}
+    fun onShare(post: Post) {}
+    fun onRemove(post: Post) {}
+    fun onEdit(post: Post) {}
+}
 
 class PostsAdapter(
-    private val onLikeListener: OnLikeListener,
-    private val onShareListener: OnShareListener
+    private val actionListener: ActionListener
 ) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder =
-        PostViewHolder(
-        binding = CardPostBinding.inflate(LayoutInflater.from(parent.context), parent, false),
-        onLikeListener = onLikeListener,
-        onShareListener = onShareListener
-        )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
+        val binding = CardPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return PostViewHolder(binding, actionListener)
+    }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val post = getItem(position)
@@ -33,8 +35,7 @@ class PostsAdapter(
 
 class PostViewHolder(
     private val binding: CardPostBinding,
-    private val onLikeListener: OnLikeListener,
-    private val onShareListener: OnShareListener
+    private val actionListener: ActionListener
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(post: Post) {
@@ -48,10 +49,29 @@ class PostViewHolder(
             likeCount.text = eventNumberFormatter(post.likes)
             shareCount.text = eventNumberFormatter(post.shares)
             like.setOnClickListener {
-                onLikeListener(post)
+                actionListener.onLike(post)
             }
             share.setOnClickListener {
-                onShareListener(post)
+                actionListener.onShare(post)
+            }
+            menu.setOnClickListener {
+                PopupMenu(binding.root.context, binding.menu).apply {
+                    inflate(R.menu.post_menu)
+                    setOnMenuItemClickListener {
+                        when (it.itemId) {
+                            R.id.remove -> {
+                                actionListener.onRemove(post)
+                                true
+                            }
+                            R.id.edit -> {
+                                actionListener.onEdit(post)
+                                true
+                            }
+                            else -> false
+                        }
+                    }
+                }
+                    .show()
             }
         }
     }
