@@ -11,7 +11,7 @@
     <string name="post_text">Текст поста</string>
     <string name="menu_edit">Редактировать</string>
     <string name="error_empty_content">Контент не может быть пустым</string>
-    <string name="content_hint">Контент</string>
+    <string name="content_hint">Введите текст</string>
     <string name="edition_message">Редактировать сообщение</string>
     <string name="author">Автор</string>
 </resources>

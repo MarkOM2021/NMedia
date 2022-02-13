@@ -64,7 +64,6 @@ class MainActivity : AppCompatActivity() {
             binding.editionField.visibility = View.GONE
             binding.edition.clearFocus()
             binding.edition.setText("")
-
         }
 
         binding.save.setOnClickListener {
