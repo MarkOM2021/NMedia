@@ -14,4 +14,11 @@
     <string name="content_hint">Введите текст</string>
     <string name="edition_message">Редактировать сообщение</string>
     <string name="author">Автор</string>
+    <string name="chooser_share_post">Поделиться постом</string>
+    <string name="description_post_save">Сохранить</string>
+    <string name="Cancel">Отменить редактирование</string>
+    <string name="video">Стоп кадр</string>
+    <string name="name_of_video">Название видео</string>
+    <string name="chooser_play_video">Открыть видео с помощью:</string>
+    <string name="video_link_hint">Вставить ссылку на YouTube-видео</string>
 </resources>

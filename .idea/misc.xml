@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2703125" />
+        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_add_24.xml" value="0.159" />
         <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.2595" />
         <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.251" />
         <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.2595" />
@@ -17,10 +18,15 @@
         <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_more_vert_24.xml" value="0.1835" />
         <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_netology_48dp.xml" value="0.2595" />
         <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_netology_original_48dp.xml" value="0.2595" />
+        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_ok_24.xml" value="0.23" />
+        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_play_circle_filled_24.xml" value="0.253" />
         <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_save_24.xml" value="0.247" />
         <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_share_24.xml" value="0.247" />
+        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/layout/activity_intent_handler.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/layout/activity_intent_play_video_handler.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/layout/card_post.xml" value="0.19845465636437576" />
+        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/layout/activity_new_post.xml" value="0.2" />
+        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/layout/card_post.xml" value="0.2" />
         <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/menu/edition_cancel.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/menu/post_menu.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2703125" />
