@@ -25,20 +25,21 @@ class PreviewPostFragment : Fragment() {
 
         val viewModel: PostViewModel by viewModels(::requireParentFragment)
 
+        val id = arguments?.postID
+
         viewModel.data.observe(viewLifecycleOwner) { posts ->
-            val id = arguments?.postID
-            val findPost = posts.find { id == it.id }
-            if (findPost != null) {
-                binding.postPreview.content.text = findPost.content
-                binding.postPreview.published.text = findPost.published
-                binding.postPreview.author.text = findPost.author
-                binding.postPreview.like.text = findPost.likes.toString()
-                binding.postPreview.share.text = findPost.shares.toString()
-                binding.postPreview.videoGroup.visibility =
+            val findPost = posts.find { id == it.id } ?: return@observe
+            with(binding){
+                postPreview.content.text = findPost.content
+                postPreview.published.text = findPost.published
+                postPreview.author.text = findPost.author
+                postPreview.like.text = findPost.likes.toString()
+                postPreview.share.text = findPost.shares.toString()
+                postPreview.videoGroup.visibility =
                     if (findPost.video.isBlank()) View.GONE else View.VISIBLE
-                binding.postPreview.videoName.text = findPost.videoName
-                binding.postPreview.menu.setOnClickListener {
-                    PopupMenu(binding.root.context, binding.postPreview.menu).apply {
+                postPreview.videoName.text = findPost.videoName
+                postPreview.menu.setOnClickListener {
+                    PopupMenu(binding.root.context, postPreview.menu).apply {
                         inflate(R.menu.post_menu)
                         setOnMenuItemClickListener {
                             when (it.itemId) {
@@ -59,6 +60,7 @@ class PreviewPostFragment : Fragment() {
                     }
                         .show()
                 }
+
             }
         }
 
