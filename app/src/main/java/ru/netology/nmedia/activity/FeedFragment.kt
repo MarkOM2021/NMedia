@@ -3,30 +3,32 @@ package ru.netology.nmedia.activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.R
+import ru.netology.nmedia.activity.NewPostFragment.Companion.textArg
+import ru.netology.nmedia.activity.PreviewPostFragment.Companion.postID
 import ru.netology.nmedia.adapter.ActionListener
 import ru.netology.nmedia.adapter.PostsAdapter
-import ru.netology.nmedia.databinding.ActivityMainBinding
+import ru.netology.nmedia.databinding.FragmentFeedBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.viewModel.PostViewModel
 import java.text.DecimalFormat
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+class FeedFragment : Fragment() {
 
-        val viewModel: PostViewModel by viewModels()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val binding = FragmentFeedBinding.inflate(layoutInflater)
 
-        val newPostContract = registerForActivityResult(NewPostActivity.Contract()) { result ->
-            result?.let {
-                viewModel.changeContent(it)
-                viewModel.save()
-            }
-        }
+        val viewModel: PostViewModel by viewModels(::requireParentFragment)
 
         val adapter = PostsAdapter(
             object : ActionListener {
@@ -61,24 +63,34 @@ class MainActivity : AppCompatActivity() {
                         Intent.createChooser(intent, getString(R.string.chooser_play_video))
                     startActivity(playIntent)
                 }
+
+                override fun onPreview(post: Post) {
+                    findNavController().navigate(
+                        R.id.action_mainActivity_to_post_preview,
+                        Bundle().apply {
+                            postID = post.id
+                        })
+                }
             }
         )
 
         binding.list.adapter = adapter
-        viewModel.data.observe(this) { posts ->
+        viewModel.data.observe(viewLifecycleOwner) { posts ->
             adapter.submitList(posts)
         }
 
-        viewModel.edited.observe(this) { post ->
+        viewModel.edited.observe(viewLifecycleOwner) { post ->
             if (post.id == 0L) {
                 return@observe
             }
-            newPostContract.launch(post.content)
+            findNavController().navigate(R.id.action_mainActivity_to_newPostFragment,
+                Bundle().apply { textArg = post.content })
         }
 
         binding.addNewPost.setOnClickListener {
-            newPostContract.launch("")
+            findNavController().navigate(R.id.action_mainActivity_to_newPostFragment)
         }
+        return binding.root
     }
 }
 

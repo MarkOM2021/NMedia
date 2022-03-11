@@ -4,18 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
-import androidx.activity.result.launch
-import androidx.activity.viewModels
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.R
-import ru.netology.nmedia.activity.MainActivity
-import ru.netology.nmedia.activity.NewPostActivity
 import ru.netology.nmedia.activity.eventNumberFormatter
 import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
-import ru.netology.nmedia.viewModel.PostViewModel
 
 interface ActionListener {
     fun onLike(post: Post) {}
@@ -23,6 +18,7 @@ interface ActionListener {
     fun onRemove(post: Post) {}
     fun onEdit(post: Post) {}
     fun onPlay(post: Post) {}
+    fun onPreview(post: Post) {}
 }
 
 class PostsAdapter(
@@ -56,6 +52,9 @@ class PostViewHolder(
             share.text = eventNumberFormatter(post.shares)
             videoName.text = post.videoName
             videoGroup.visibility = if (post.video.isBlank()) View.GONE else View.VISIBLE
+            content.setOnClickListener {
+                actionListener.onPreview(post)
+            }
             like.setOnClickListener {
                 actionListener.onLike(post)
             }

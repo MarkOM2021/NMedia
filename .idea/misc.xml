@@ -22,11 +22,15 @@
         <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_play_circle_filled_24.xml" value="0.253" />
         <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_save_24.xml" value="0.247" />
         <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_share_24.xml" value="0.247" />
+        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/layout/activity_app.xml" value="0.2" />
         <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/layout/activity_intent_handler.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/layout/activity_intent_play_video_handler.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/layout/activity_new_post.xml" value="0.2" />
         <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/layout/card_post.xml" value="0.2" />
+        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/layout/fragment_feed.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/layout/fragment_new_post.xml" value="0.14052583862194015" />
+        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/layout/fragment_post.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/menu/edition_cancel.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/menu/post_menu.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2703125" />
