@@ -32,7 +32,6 @@ class NewPostFragment : Fragment() {
                 val content = binding.edit.text.toString()
                 viewModel.changeContent(content)
                 viewModel.save()
-
             }
             findNavController().navigateUp()
         }
