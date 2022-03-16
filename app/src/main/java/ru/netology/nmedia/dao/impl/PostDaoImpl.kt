@@ -19,7 +19,8 @@ class PostDaoImpl(private val db: SQLiteDatabase) : PostDao {
             ${PostColumns.COLUMN_VIEWS} INTEGER NOT NULL DEFAULT 0,
             ${PostColumns.COLUMN_LIKED_BY_ME} BOOLEAN NOT NULL DEFAULT 0,
             ${PostColumns.COLUMN_VIDEO} TEXT NOT NULL,
-            ${PostColumns.COLUMN_VIDEO_NAME} TEXT NOT NULL
+            ${PostColumns.COLUMN_VIDEO_NAME} TEXT NOT NULL,
+            
         );
         """.trimIndent()
     }
@@ -35,7 +36,7 @@ class PostDaoImpl(private val db: SQLiteDatabase) : PostDao {
         const val COLUMN_VIEWS = "views"
         const val COLUMN_LIKED_BY_ME = "likedByMe"
         const val COLUMN_VIDEO = "video"
-        const val COLUMN_VIDEO_NAME = "video name"
+        const val COLUMN_VIDEO_NAME = "videoName"
 
         val ALL_COLUMNS = arrayOf(
             COLUMN_ID,
@@ -48,6 +49,7 @@ class PostDaoImpl(private val db: SQLiteDatabase) : PostDao {
             COLUMN_LIKED_BY_ME,
             COLUMN_VIDEO,
             COLUMN_VIDEO_NAME
+
         )
     }
 
@@ -72,7 +74,7 @@ class PostDaoImpl(private val db: SQLiteDatabase) : PostDao {
     override fun save(post: Post): Post {
         val values = ContentValues().apply {
             // TODO: remove hardcoded values
-            put(PostColumns.COLUMN_AUTHOR, post.author)
+            put(PostColumns.COLUMN_AUTHOR, "Me")
             put(PostColumns.COLUMN_CONTENT, post.content)
             put(PostColumns.COLUMN_PUBLISHED, "now")
         }
