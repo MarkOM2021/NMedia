@@ -18,9 +18,8 @@ class PostDaoImpl(private val db: SQLiteDatabase) : PostDao {
             ${PostColumns.COLUMN_SHARES} INTEGER NOT NULL DEFAULT 0,
             ${PostColumns.COLUMN_VIEWS} INTEGER NOT NULL DEFAULT 0,
             ${PostColumns.COLUMN_LIKED_BY_ME} BOOLEAN NOT NULL DEFAULT 0,
-            ${PostColumns.COLUMN_VIDEO} TEXT NOT NULL,
-            ${PostColumns.COLUMN_VIDEO_NAME} TEXT NOT NULL,
-            
+            ${PostColumns.COLUMN_VIDEO} TEXT NOT NULL DEFAULT "",
+            ${PostColumns.COLUMN_VIDEO_NAME} TEXT NOT NULL DEFAULT ""  
         );
         """.trimIndent()
     }
@@ -49,7 +48,6 @@ class PostDaoImpl(private val db: SQLiteDatabase) : PostDao {
             COLUMN_LIKED_BY_ME,
             COLUMN_VIDEO,
             COLUMN_VIDEO_NAME
-
         )
     }
 
