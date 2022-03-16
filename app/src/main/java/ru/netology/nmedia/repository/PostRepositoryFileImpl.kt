@@ -17,7 +17,7 @@ class PostRepositoryFileImpl(val context: Context) : PostRepository {
     private var nextID = 1L
     private var posts = emptyList<Post>(
     )
-    private val data = MutableLiveData(posts)
+    override val data = MutableLiveData(posts)
 
     init {
         val file = context.filesDir.resolve(fileName)
@@ -31,8 +31,6 @@ class PostRepositoryFileImpl(val context: Context) : PostRepository {
             sync()
         }
     }
-
-    override fun getAll(): LiveData<List<Post>> = data
 
     override fun likedByID(id: Long) {
         posts = posts.map {

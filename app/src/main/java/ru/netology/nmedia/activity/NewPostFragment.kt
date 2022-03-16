@@ -1,6 +1,5 @@
 package ru.netology.nmedia.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,10 +25,6 @@ class NewPostFragment : Fragment() {
         }
 
         val viewModel: PostViewModel by viewModels(::requireParentFragment)
-
-        activity?.intent?.getStringExtra(Intent.EXTRA_TEXT)?.let {
-            binding.edit.setText(it)
-        }
 
         binding.edit.requestFocus()
         binding.add.setOnClickListener {
