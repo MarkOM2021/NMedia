@@ -12,15 +12,17 @@ val empty = Post(
     author = "",
     content = "",
     published = "",
-    likedByMe = false,
     video = ""
 )
 
 class PostViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: PostRepository =
         //PostRepositoryFileImpl (application)
-        PostRepositorySQLiteImpl(AppDb.getInstance(application).postDao)
-    val data get() = repository.data
+        //PostRepositorySQLiteImpl(AppDb.getInstance(application).postDao)
+        PostRepositoryImpl(
+            AppDb.getInstance(context = application).postDao()
+        )
+    val data = repository.getAll()
     val edited = MutableLiveData(empty)
 
     fun likedByID(id: Long) = repository.likedByID(id)

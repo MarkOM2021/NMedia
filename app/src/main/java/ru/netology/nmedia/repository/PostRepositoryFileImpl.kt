@@ -17,7 +17,9 @@ class PostRepositoryFileImpl(val context: Context) : PostRepository {
     private var nextID = 1L
     private var posts = emptyList<Post>(
     )
-    override val data = MutableLiveData(posts)
+
+    private val data = MutableLiveData(posts)
+    override fun getAll(): LiveData<List<Post>> = data
 
     init {
         val file = context.filesDir.resolve(fileName)
