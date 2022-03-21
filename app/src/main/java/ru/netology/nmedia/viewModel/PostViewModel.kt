@@ -46,6 +46,9 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
             }
             edited.value = it.copy(content = content)
         }
+    }
 
+    fun cancel() {
+        TODO()
     }
 }
