@@ -1,4 +1,4 @@
-package ru.netology.nmedia.activity
+package ru.netology.nmedia.fragments
 
 import android.content.Intent
 import android.net.Uri
@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.R
-import ru.netology.nmedia.activity.NewPostFragment.Companion.textArg
-import ru.netology.nmedia.activity.PreviewPostFragment.Companion.postID
+import ru.netology.nmedia.fragments.NewPostFragment.Companion.textArg
+import ru.netology.nmedia.fragments.PreviewPostFragment.Companion.postID
 import ru.netology.nmedia.adapter.ActionListener
 import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.FragmentFeedBinding
@@ -80,6 +80,7 @@ class FeedFragment : Fragment() {
         }
 
         viewModel.edited.observe(viewLifecycleOwner) { post ->
+            post ?: return@observe
             if (post.id == 0L) {
                 return@observe
             }

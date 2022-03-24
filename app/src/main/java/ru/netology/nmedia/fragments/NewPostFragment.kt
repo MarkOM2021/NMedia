@@ -1,4 +1,4 @@
-package ru.netology.nmedia.activity
+package ru.netology.nmedia.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -37,7 +37,7 @@ class NewPostFragment : Fragment() {
         }
 
         binding.cancelEdition.setOnClickListener {
-            findNavController().navigateUp()
+            findNavController().popBackStack()
         }
 
         return binding.root

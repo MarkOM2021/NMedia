@@ -6,6 +6,7 @@ import ru.netology.nmedia.db.AppDb
 import ru.netology.nmedia.repository.PostRepository
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.repository.*
+import ru.netology.nmedia.util.SingleLiveEvent
 
 val empty = Post(
     id = 0L,
@@ -23,7 +24,8 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
             AppDb.getInstance(context = application).postDao()
         )
     val data = repository.getAll()
-    val edited = MutableLiveData(empty)
+    val edited = SingleLiveEvent<Post>()
+    //val edited = MutableLiveData(empty)
 
     fun likedByID(id: Long) = repository.likedByID(id)
     fun removeByID(id: Long) = repository.removeByID(id)
@@ -46,9 +48,5 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
             }
             edited.value = it.copy(content = content)
         }
-    }
-
-    fun cancel() {
-        TODO()
     }
 }
