@@ -36,7 +36,7 @@ class NewPostFragment : Fragment() {
             findNavController().navigateUp()
         }
 
-        binding.cancelEdition.setOnClickListener {
+        binding.cancelEditing.setOnClickListener {
             findNavController().popBackStack()
         }
 
