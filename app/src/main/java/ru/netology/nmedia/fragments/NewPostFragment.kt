@@ -10,28 +10,38 @@ import ru.netology.nmedia.databinding.FragmentNewPostBinding
 import ru.netology.nmedia.util.StringArg
 import ru.netology.nmedia.viewModel.PostViewModel
 import androidx.navigation.fragment.findNavController
+import ru.netology.nmedia.util.AndroidUtils
 
 class NewPostFragment : Fragment() {
+
+    companion object {
+        var Bundle.textArg: String? by StringArg
+    }
+
+    private val viewModel: PostViewModel by viewModels(
+        ownerProducer = ::requireParentFragment
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentNewPostBinding.inflate(layoutInflater)
+        val binding = FragmentNewPostBinding.inflate(
+            inflater,
+            container,
+            false
+        )
 
-        arguments?.textArg?.let {
-            binding.edit.setText(it)
-        }
+        arguments?.textArg
+            ?.let(binding.edit::setText)
 
-        val viewModel: PostViewModel by viewModels(::requireParentFragment)
-
-        binding.edit.requestFocus()
         binding.add.setOnClickListener {
             if (binding.edit.text.toString().isNotBlank()) {
                 val content = binding.edit.text.toString()
                 viewModel.changeContent(content)
                 viewModel.save()
+                AndroidUtils.hideKeyboard(requireView())
             }
             findNavController().navigateUp()
         }
@@ -40,10 +50,11 @@ class NewPostFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        return binding.root
-    }
+        viewModel.postCreated.observe(viewLifecycleOwner) {
+            viewModel.loadPosts()
+            findNavController().navigateUp()
+        }
 
-    companion object {
-        var Bundle.textArg: String? by StringArg
+        return binding.root
     }
 }

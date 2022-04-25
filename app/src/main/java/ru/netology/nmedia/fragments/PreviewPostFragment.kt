@@ -28,7 +28,7 @@ class PreviewPostFragment : Fragment() {
         val id = arguments?.postID
 
         viewModel.data.observe(viewLifecycleOwner) { posts ->
-            val findPost = posts.find { id == it.id } ?: return@observe
+            val findPost = posts.posts.find { id == it.id } ?: return@observe
             with(binding){
                 postPreview.content.text = findPost.content
                 postPreview.published.text = findPost.published

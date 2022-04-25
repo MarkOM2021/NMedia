@@ -21,4 +21,11 @@
     <string name="name_of_video">Название видео</string>
     <string name="chooser_play_video">Открыть видео с помощью:</string>
     <string name="video_link_hint">Вставить ссылку на YouTube-видео</string>
+    <string name="notification_user_liked">Пользователь %1$s лайкнул пост пользователя %2$s</string>
+    <string name="channel_remote_name">Уведомления от сервера</string>
+    <string name="channel_remote_description">Уведомления от удаленного сервера</string>
+    <string name="google_play_unavailable">Google Api недоступен</string>
+    <string name="error_loading">Ой, что-то пошло не так... Попробуйте позже</string>
+    <string name="empty_posts">Пока что здесь ничего нет. Вы можете создать пост и он появится здесь</string>
+    <string name="retry_loading">Попробовать снова</string>
 </resources>
