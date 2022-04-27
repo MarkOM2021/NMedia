@@ -7,6 +7,7 @@ interface PostRepository {
     fun getAll(): List<Post>
     fun save(post: Post)
     fun likedByID(id: Long)
+    fun disLikeByID(id: Long)
     fun sharedByID(id: Long)
     fun removeByID(id: Long)
 }

@@ -29,12 +29,12 @@ class FeedFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentFeedBinding.inflate(layoutInflater)
+        val binding = FragmentFeedBinding.inflate(inflater, container, false)
 
-        val adapter = PostsAdapter(
-            object : ActionListener {
+        val adapter = PostsAdapter(object : ActionListener {
                 override fun onLike(post: Post) {
-                    viewModel.likedByID(post.id)
+                    if (post.likedByMe) viewModel.disLikeByID(post.id)
+                    else viewModel.likedByID(post.id)
                 }
 
                 override fun onShare(post: Post) {
@@ -76,12 +76,17 @@ class FeedFragment : Fragment() {
         )
 
         binding.list.adapter = adapter
-        viewModel.data.observe(viewLifecycleOwner) { state ->
+        viewModel.data.observe(viewLifecycleOwner, { state ->
             adapter.submitList(state.posts)
             binding.progress.isVisible = state.loading
             binding.errorGroup.isVisible = state.error
             binding.emptyText.isVisible = state.empty
+        })
+
+        binding.retryButton.setOnClickListener {
+            viewModel.loadPosts()
         }
+
 
         viewModel.edited.observe(viewLifecycleOwner) { post ->
             post ?: return@observe

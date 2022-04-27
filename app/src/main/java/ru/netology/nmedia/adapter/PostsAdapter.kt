@@ -24,10 +24,11 @@ interface ActionListener {
 class PostsAdapter(
     private val actionListener: ActionListener
 ) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
-        val binding = CardPostBinding.inflate(LayoutInflater.from(parent.context),
-            parent, false)
+        val binding = CardPostBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent, false
+        )
         return PostViewHolder(binding, actionListener)
     }
 
@@ -51,7 +52,7 @@ class PostViewHolder(
             like.text = eventNumberFormatter(post.likes)
             share.text = eventNumberFormatter(post.shares)
             videoName.text = post.videoName
-            videoGroup.visibility = if (post.video.isBlank()) View.GONE else View.VISIBLE
+            videoGroup.visibility = if (post.video == "") View.GONE else View.VISIBLE
             content.setOnClickListener {
                 actionListener.onPreview(post)
             }

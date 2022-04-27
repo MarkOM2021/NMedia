@@ -9,7 +9,8 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import ru.netology.nmedia.dto.Post
 import java.util.concurrent.TimeUnit
 
-class PostRepositoryImpl : PostRepository {
+
+class PostRepositoryImpl: PostRepository {
     private val client = OkHttpClient.Builder()
         .connectTimeout(30, TimeUnit.SECONDS)
         .build()
@@ -17,6 +18,7 @@ class PostRepositoryImpl : PostRepository {
     private val typeToken = object : TypeToken<List<Post>>() {}
 
     companion object {
+        //private const val BASE_URL = "http://192.168.1.68:9999"
         private const val BASE_URL = "http://10.0.2.2:9999"
         private val jsonType = "application/json".toMediaType()
     }
@@ -57,6 +59,17 @@ class PostRepositoryImpl : PostRepository {
             .close()
     }
 
+    override fun disLikeByID(id: Long) {
+        val request: Request = Request.Builder()
+            .delete()
+            .url("${BASE_URL}/api/posts/$id/likes")
+            .build()
+
+        client.newCall(request)
+            .execute()
+            .close()
+    }
+
     override fun sharedByID(id: Long) {
         // TODO: no value on server yet
     }
@@ -64,7 +77,7 @@ class PostRepositoryImpl : PostRepository {
     override fun removeByID(id: Long) {
         val request: Request = Request.Builder()
             .delete()
-            .url("${BASE_URL}/api/slow/posts/$id")
+            .url("${BASE_URL}/api/posts/$id")
             .build()
 
         client.newCall(request)

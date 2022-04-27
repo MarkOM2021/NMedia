@@ -1,10 +1,13 @@
 package ru.netology.nmedia.viewModel
 
 import android.app.Application
-import androidx.lifecycle.*
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.model.FeedModel
-import ru.netology.nmedia.repository.*
+import ru.netology.nmedia.repository.PostRepository
+import ru.netology.nmedia.repository.PostRepositoryImpl
 import ru.netology.nmedia.util.SingleLiveEvent
 import java.io.IOException
 import kotlin.concurrent.thread
@@ -14,6 +17,8 @@ val empty = Post(
     author = "",
     content = "",
     published = "",
+    likedByMe = false,
+    sharedByMe = false,
     video = ""
 )
 
@@ -47,27 +52,6 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun likedByID(id: Long) {
-        thread { repository.likedByID(id) }
-    }
-
-    fun removeByID(id: Long) {
-        thread {
-            // Оптимистичная модель
-            val old = _data.value?.posts.orEmpty()
-            _data.postValue(
-                _data.value?.copy(posts = _data.value?.posts.orEmpty()
-                    .filter { it.id != id }
-                )
-            )
-            try {
-                repository.removeByID(id)
-            } catch (e: IOException) {
-                _data.postValue(_data.value?.copy(posts = old))
-            }
-        }
-    }
-
     fun save() {
         edited.value?.let {
             thread {
@@ -88,5 +72,30 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
             return
         }
         edited.value = edited.value?.copy(content = text)
+    }
+
+    fun likedByID(id: Long) {
+        thread { repository.likedByID(id) }
+    }
+
+    fun disLikeByID(id: Long) {
+        thread { repository.disLikeByID(id) }
+    }
+
+    fun removeByID(id: Long) {
+        thread {
+            // Оптимистичная модель
+            val old = _data.value?.posts.orEmpty()
+            _data.postValue(
+                _data.value?.copy(posts = _data.value?.posts.orEmpty()
+                    .filter { it.id != id }
+                )
+            )
+            try {
+                repository.removeByID(id)
+            } catch (e: IOException) {
+                _data.postValue(_data.value?.copy(posts = old))
+            }
+        }
     }
 }
