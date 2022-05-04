@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.bumptech.glide.Glide
+import ru.netology.nmedia.R
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.model.FeedModel
 import ru.netology.nmedia.repository.PostRepository
@@ -13,6 +15,7 @@ import ru.netology.nmedia.util.SingleLiveEvent
 val empty = Post(
     id = 0L,
     author = "",
+    authorAvatar = "",
     content = "",
     published = "",
     likedByMe = false,

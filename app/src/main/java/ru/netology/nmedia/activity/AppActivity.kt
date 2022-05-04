@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.navigation.findNavController
+import com.bumptech.glide.Glide
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_INDEFINITE
@@ -13,6 +14,8 @@ import com.google.firebase.messaging.FirebaseMessaging
 import ru.netology.nmedia.R
 import ru.netology.nmedia.fragments.NewPostFragment.Companion.textArg
 import ru.netology.nmedia.databinding.ActivityAppBinding
+import ru.netology.nmedia.databinding.CardPostBinding
+import ru.netology.nmedia.repository.PostRepositoryImpl
 
 class AppActivity : AppCompatActivity(R.layout.activity_app) {
 

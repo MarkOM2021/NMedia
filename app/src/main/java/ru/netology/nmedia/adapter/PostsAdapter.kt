@@ -7,10 +7,15 @@ import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import ru.netology.nmedia.BuildConfig
 import ru.netology.nmedia.R
 import ru.netology.nmedia.fragments.eventNumberFormatter
 import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
+import ru.netology.nmedia.repository.PostRepositoryImpl.Companion.BASE_URL
+import ru.netology.nmedia.view.load
+import ru.netology.nmedia.view.loadCircleCrop
 
 interface ActionListener {
     fun onLike(post: Post) {}
@@ -46,6 +51,7 @@ class PostViewHolder(
     fun bind(post: Post) {
         binding.apply {
             author.text = post.author
+            avatar.load("$BASE_URL/avatars/${post.authorAvatar}")
             published.text = post.published
             content.text = post.content
             like.isChecked = post.likedByMe
