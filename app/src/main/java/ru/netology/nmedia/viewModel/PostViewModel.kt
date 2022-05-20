@@ -161,6 +161,7 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     private var lastLikedID: Long? = null
     private var lastDisLikedID: Long? = null
     private var lastRemovedID: Long? = null
+    private var lastSaved: Long? = null
 
     fun retry() {
         when(lastAction) {
@@ -173,13 +174,13 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun retryDisLike() {
-        lastRemovedID?.let {
+        lastDisLikedID?.let {
             disLikedByID(it)
         }
     }
 
     private fun retrySave() {
-        lastRemovedID?.let {
+        lastSaved?.let {
             save()
         }
     }
@@ -191,7 +192,7 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun retryLike() {
-        lastRemovedID?.let {
+        lastLikedID?.let {
             likedByID(it)
         }
     }

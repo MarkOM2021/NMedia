@@ -13,8 +13,8 @@ import java.util.concurrent.TimeUnit
 class PostRepositoryImpl : PostRepository {
 
     companion object {
-        //const val BASE_URL = "http://192.168.1.64:9999"
-        const val BASE_URL = "http://10.0.2.2:9999"
+        const val BASE_URL = "http://192.168.1.64:9999"
+        //const val BASE_URL = "http://10.0.2.2:9999"
     }
 
 
@@ -106,6 +106,7 @@ class PostRepositoryImpl : PostRepository {
                         callback.onError(RuntimeException(response.message()))
                         return
                     }
+                    callback.onSuccess(response.body() ?: throw RuntimeException("body is null"))
                 }
 
                 override fun onFailure(call: Call<Unit>, t: Throwable) {

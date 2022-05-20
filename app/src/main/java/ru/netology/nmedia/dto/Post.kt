@@ -11,6 +11,6 @@ data class Post(
     val views: Int = 0,
     val likedByMe: Boolean,
     val sharedByMe: Boolean,
-    val video: String ="",
-    val videoName: String = ""
+    val video: String =" video ",
+    val videoName: String = " name"
 )

@@ -52,12 +52,14 @@
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/errorGroup"
+        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:constraint_referenced_ids="retryTitle,retryButton" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/serverErrorGroup"
+        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:constraint_referenced_ids="retryTitleServer,retryAgainButton" />
