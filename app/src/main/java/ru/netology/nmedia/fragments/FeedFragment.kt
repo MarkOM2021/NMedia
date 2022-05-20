@@ -17,6 +17,7 @@ import ru.netology.nmedia.adapter.ActionListener
 import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.FragmentFeedBinding
 import ru.netology.nmedia.dto.Post
+import ru.netology.nmedia.model.FeedModel
 import ru.netology.nmedia.viewModel.PostViewModel
 import java.text.DecimalFormat
 
@@ -33,7 +34,7 @@ class FeedFragment : Fragment() {
 
         val adapter = PostsAdapter(object : ActionListener {
                 override fun onLike(post: Post) {
-                    if (post.likedByMe) viewModel.disLikeByID(post.id)
+                    if (post.likedByMe) viewModel.disLikedByID(post.id)
                     else viewModel.likedByID(post.id)
                 }
 
@@ -76,17 +77,14 @@ class FeedFragment : Fragment() {
         )
 
         binding.list.adapter = adapter
-        viewModel.data.observe(viewLifecycleOwner, { state ->
+        viewModel.data.observe(viewLifecycleOwner) { state ->
             adapter.submitList(state.posts)
             binding.progress.isVisible = state.loading
             binding.errorGroup.isVisible = state.error
             binding.emptyText.isVisible = state.empty
-        })
-
-        binding.retryButton.setOnClickListener {
-            viewModel.loadPosts()
+            binding.refresh.isRefreshing = state.refreshing
+            binding.serverErrorGroup.isVisible = state.serverNoResponse
         }
-
 
         viewModel.edited.observe(viewLifecycleOwner) { post ->
             post ?: return@observe
@@ -100,6 +98,20 @@ class FeedFragment : Fragment() {
         binding.addNewPost.setOnClickListener {
             findNavController().navigate(R.id.action_mainActivity_to_newPostFragment)
         }
+
+        binding.refresh.setOnRefreshListener {
+            FeedModel(refreshing = true)
+            viewModel.loadPosts()
+        }
+
+        binding.retryButton.setOnClickListener {
+            viewModel.loadPosts()
+        }
+
+        binding.retryAgainButton.setOnClickListener {
+            viewModel.retry()
+        }
+
         return binding.root
     }
 }

@@ -4,8 +4,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.bumptech.glide.Glide
-import ru.netology.nmedia.R
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.model.FeedModel
 import ru.netology.nmedia.repository.PostRepository
@@ -39,6 +37,7 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun loadPosts() {
+        lastAction = null
         // Начинаем загрузку
         _data.postValue(FeedModel(loading = true))
         // Данные успешно получены
@@ -50,22 +49,24 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
             override fun onError(e: Exception) {
                 _data.postValue(FeedModel(error = true))
             }
-
         })
     }
 
     fun save() {
         edited.value?.let {
+            lastAction = null
+
             repository.saveAsync(it, object : PostRepository.PostCallBack<Post> {
                 override fun onSuccess(value: Post) {
                     _postCreated.postValue(Unit)
+                    edited.value = empty
                 }
 
                 override fun onError(e: Exception) {
-                    _data.postValue(FeedModel(error = true))
+                    lastAction = ActionType.SAVE
+                    _data.postValue(FeedModel(serverNoResponse = true))
                 }
             })
-            edited.value = empty
         }
     }
 
@@ -82,6 +83,9 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun likedByID(id: Long) {
+        lastAction = null
+        lastLikedID = null
+
         repository.likeByIDAsync(id, object : PostRepository.PostCallBack<Post> {
             override fun onSuccess(value: Post) {
                 _data.postValue(
@@ -95,12 +99,17 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
             }
 
             override fun onError(e: Exception) {
-                _data.postValue(FeedModel(error = true))
+                lastAction = ActionType.LIKE
+                lastLikedID = id
+                _data.postValue(FeedModel(serverNoResponse = true))
             }
         })
     }
 
-    fun disLikeByID(id: Long) {
+    fun disLikedByID(id: Long) {
+        lastAction = null
+        lastDisLikedID = null
+
         repository.disLikeByIDAsync(id, object : PostRepository.PostCallBack<Post> {
             override fun onSuccess(value: Post) {
                 _data.postValue(
@@ -114,28 +123,83 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
             }
 
             override fun onError(e: Exception) {
-                _data.postValue(FeedModel(error = true))
+                lastDisLikedID = id
+                lastAction = ActionType.DISLIKE
+                _data.postValue(FeedModel(serverNoResponse = true))
             }
         })
     }
 
     fun removeByID(id: Long) {
+        lastAction = null
+        lastRemovedID = null
 
-        // Оптимистичная модель
-        val old = _data.value?.posts.orEmpty()
-        _data.postValue(
-            _data.value?.copy(posts = _data.value?.posts.orEmpty()
-                .filter { it.id != id }
-            )
-        )
-        repository.removeByIDAsync(id, object : PostRepository.PostCallBack<Post> {
-            override fun onSuccess(value: Post) {
+        repository.removeByIDAsync(id, object : PostRepository.PostCallBack<Unit> {
+            override fun onSuccess(value: Unit) {
+                val updated = _data.value?.posts.orEmpty().filter {it.id != id}
+                _data.postValue(
+                    _data.value?.copy(
+                        posts = updated
+                    )
+                )
             }
 
             override fun onError(e: Exception) {
+                lastAction = ActionType.REMOVE
+                lastRemovedID = id
+
+                val old = _data.value?.posts.orEmpty()
+                _data.postValue(FeedModel(serverNoResponse = true))
                 _data.postValue(_data.value?.copy(posts = old))
             }
 
         })
+    }
+
+
+    private var lastAction: ActionType? = null
+    private var lastLikedID: Long? = null
+    private var lastDisLikedID: Long? = null
+    private var lastRemovedID: Long? = null
+
+    fun retry() {
+        when(lastAction) {
+            ActionType.SAVE -> retrySave()
+            ActionType.LIKE -> retryLike()
+            ActionType.DISLIKE -> retryDisLike()
+            ActionType.REMOVE -> retryRemove()
+            else -> loadPosts()
+        }
+    }
+
+    private fun retryDisLike() {
+        lastRemovedID?.let {
+            disLikedByID(it)
+        }
+    }
+
+    private fun retrySave() {
+        lastRemovedID?.let {
+            save()
+        }
+    }
+
+    private fun retryRemove() {
+        lastRemovedID?.let {
+            removeByID(it)
+        }
+    }
+
+    private fun retryLike() {
+        lastRemovedID?.let {
+            likedByID(it)
+        }
+    }
+
+    enum class ActionType {
+        SAVE,
+        LIKE,
+        REMOVE,
+        DISLIKE
     }
 }

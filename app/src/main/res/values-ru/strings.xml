@@ -28,4 +28,6 @@
     <string name="error_loading">Ой, что-то пошло не так... Попробуйте позже</string>
     <string name="empty_posts">Пока что здесь ничего нет. Вы можете создать пост и он появится здесь</string>
     <string name="retry_loading">Попробовать снова</string>
+    <string name="server_error">Нет ответа от сервера. Попробуйте еще раз</string>
+    <string name="retry_loading_server">Попробовать снова</string>
 </resources>
