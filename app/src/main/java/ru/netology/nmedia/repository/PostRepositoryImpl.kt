@@ -20,8 +20,7 @@ class PostRepositoryImpl(private val dao: PostDao) : PostRepository {
     override val data = dao.getAll().map(List<PostEntity>::toDto)
 
     companion object {
-        const val BASE_URL = "http://127.0.0.1:9999"
-        //const val BASE_URL = "http://10.0.2.2:9999"
+        const val BASE_URL = "http://10.0.2.2:9999"
     }
 
     override suspend fun load() {
