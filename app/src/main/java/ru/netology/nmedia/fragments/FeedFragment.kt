@@ -10,6 +10,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import ru.netology.nmedia.R
 import ru.netology.nmedia.fragments.NewPostFragment.Companion.textArg
 import ru.netology.nmedia.fragments.PreviewPostFragment.Companion.postID
@@ -17,7 +18,7 @@ import ru.netology.nmedia.adapter.ActionListener
 import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.FragmentFeedBinding
 import ru.netology.nmedia.dto.Post
-import ru.netology.nmedia.model.FeedModel
+import ru.netology.nmedia.model.FeedModelState
 import ru.netology.nmedia.viewModel.PostViewModel
 import java.text.DecimalFormat
 
@@ -77,13 +78,21 @@ class FeedFragment : Fragment() {
         )
 
         binding.list.adapter = adapter
-        viewModel.data.observe(viewLifecycleOwner) { state ->
-            adapter.submitList(state.posts)
+        viewModel.data.observe(viewLifecycleOwner) { data ->
+            adapter.submitList(data.posts)
+            binding.emptyText.isVisible = data.empty
+        }
+
+        viewModel.dataState.observe(viewLifecycleOwner) { state ->
             binding.progress.isVisible = state.loading
             binding.errorGroup.isVisible = state.error
-            binding.emptyText.isVisible = state.empty
-            binding.refresh.isRefreshing = state.refreshing
             binding.serverErrorGroup.isVisible = state.serverNoResponse
+            if(state.error) {
+                Snackbar.make(binding.root, R.string.error_loading, Snackbar.LENGTH_LONG)
+                    .setAction(R.string.retry_loading) {viewModel.loadPosts()}
+                    .show()
+            }
+            binding.swiperefresh.isRefreshing = state.refreshing
         }
 
         viewModel.edited.observe(viewLifecycleOwner) { post ->
@@ -99,9 +108,9 @@ class FeedFragment : Fragment() {
             findNavController().navigate(R.id.action_mainActivity_to_newPostFragment)
         }
 
-        binding.refresh.setOnRefreshListener {
-            FeedModel(refreshing = true)
-            viewModel.loadPosts()
+        binding.swiperefresh.setOnRefreshListener {
+            FeedModelState(refreshing = true)
+            viewModel.refresh()
         }
 
         binding.retryButton.setOnClickListener {
