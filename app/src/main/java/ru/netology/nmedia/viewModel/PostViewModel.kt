@@ -26,8 +26,11 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: PostRepository =
         PostRepositoryImpl(AppDb.getInstance(application).postDao())
 
-    val data: LiveData<FeedModel> = repository.data.map(::FeedModel)
     private val _data = MutableLiveData<FeedModel>()
+    val data: LiveData<FeedModel>
+        get() = repository.data.map(::FeedModel)
+
+
     private val _dataState = MutableLiveData<FeedModelState>()
     val dataState: LiveData<FeedModelState>
         get() = _dataState
@@ -65,9 +68,7 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
 
     fun save() {
         edited.value?.let {
-
             lastAction = null
-
             _postCreated.value = Unit
             viewModelScope.launch {
                 try {
@@ -97,13 +98,12 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     fun likedByID(id: Long) {
         lastAction = null
         lastLikedID = null
-
         viewModelScope.launch {
             try {
                 repository.likeByID(id)
                 _data.postValue(
                     _data.value?.copy(
-                        posts = _data.value?.posts.orEmpty()
+                        posts = data.value?.posts.orEmpty()
                             .map {
                                 if (it.id == id) it.copy(likedByMe = true, likes = it.likes + 1)
                                 else it
@@ -121,13 +121,12 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     fun disLikedByID(id: Long) {
         lastAction = null
         lastDisLikedID = null
-
         viewModelScope.launch {
             try {
                 repository.disLikeByID(id)
                 _data.postValue(
                     _data.value?.copy(
-                        posts = _data.value?.posts.orEmpty()
+                        posts = data.value?.posts.orEmpty()
                             .map {
                                 if (it.id == id) it.copy(likedByMe = false, likes = it.likes - 1)
                                 else it
