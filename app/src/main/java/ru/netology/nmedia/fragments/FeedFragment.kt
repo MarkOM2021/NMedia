@@ -59,12 +59,12 @@ class FeedFragment : Fragment() {
                 }
 
                 override fun onPlay(post: Post) {
-                    val intent = Intent(Intent.ACTION_VIEW).apply {
+                    /*val intent = Intent(Intent.ACTION_VIEW).apply {
                         data = Uri.parse(post.video)
                     }
                     val playIntent =
                         Intent.createChooser(intent, getString(R.string.chooser_play_video))
-                    startActivity(playIntent)
+                    startActivity(playIntent)*/
                 }
 
                 override fun onPreview(post: Post) {

@@ -57,8 +57,9 @@ class PostViewHolder(
             like.isChecked = post.likedByMe
             like.text = eventNumberFormatter(post.likes)
             share.text = eventNumberFormatter(post.shares)
-            videoName.text = post.videoName
-            videoGroup.visibility = if (post.video == "") View.GONE else View.VISIBLE
+            //videoName.text = post.videoName
+            videoGroup.visibility = View.GONE
+                    // if (post.video == "") View.GONE else View.VISIBLE
             content.setOnClickListener {
                 actionListener.onPreview(post)
             }

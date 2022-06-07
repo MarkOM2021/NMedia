@@ -35,9 +35,9 @@ class PreviewPostFragment : Fragment() {
                 postPreview.author.text = findPost.author
                 postPreview.like.text = findPost.likes.toString()
                 postPreview.share.text = findPost.shares.toString()
-                postPreview.videoGroup.visibility =
-                    if (findPost.video.isBlank()) View.GONE else View.VISIBLE
-                postPreview.videoName.text = findPost.videoName
+                postPreview.videoGroup.visibility = View.GONE
+                    //if (findPost.video.isBlank()) View.GONE else View.VISIBLE
+                //postPreview.videoName.text = findPost.videoName
                 postPreview.menu.setOnClickListener {
                     PopupMenu(binding.root.context, postPreview.menu).apply {
                         inflate(R.menu.post_menu)
