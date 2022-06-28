@@ -3,53 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/JAVA projects/AndroidStudioProjects/NMedia/app/src/main/res/layout/fragment_feed.xml" value="0.12222222222222222" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable-v24/ic_banner_foreground.xml" value="0.124" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2703125" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable-v24/ic_notification.xml" value="0.216" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_add_24.xml" value="0.159" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.2595" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.251" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.2595" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_baseline_visibility_24.xml" value="0.2595" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_close_24.xml" value="0.1835" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_edit_24.xml" value="0.2415" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_error.xml" value="0.1815" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2703125" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_like_24.xml" value="0.1815" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_like_24dp.xml" value="0.244" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_liked_24.xml" value="0.247" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_more_vert_24.xml" value="0.1835" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_netology_48dp.xml" value="0.2595" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_netology_original_48dp.xml" value="0.2595" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_ok_24.xml" value="0.23" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_play_circle_filled_24.xml" value="0.253" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_save_24.xml" value="0.247" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/drawable/ic_share_24.xml" value="0.247" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/layout/activity_app.xml" value="0.2" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/layout/activity_intent_handler.xml" value="0.20863616930312098" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/layout/activity_intent_play_video_handler.xml" value="0.20863616930312098" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/layout/activity_new_post.xml" value="0.2" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/layout/card_post.xml" value="0.2" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/layout/fragment_feed.xml" value="0.20863616930312098" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/layout/fragment_new_post.xml" value="0.14052583862194015" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/layout/fragment_post.xml" value="0.20863616930312098" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/menu/edition_cancel.xml" value="0.20863616930312098" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/menu/post_menu.xml" value="0.20863616930312098" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2703125" />
-        <entry key="..\:/Users/Markom/AndroidStudioProjects/NMedia/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2703125" />
+        <entry key="..\:/JAVA projects/AndroidStudioProjects/NMedia/app/src/main/res/layout/fragment_new_post.xml" value="0.1" />
+        <entry key="..\:/JAVA projects/AndroidStudioProjects/andin-code-master/andin-code-master/12_images/android/app/src/main/res/layout/fragment_new_post.xml" value="0.21784420289855072" />
       </map>
     </option>
   </component>
-  <component name="ProjectResources">
-    <resource url="http://schemas.android.com/apk/res/android" location="$PROJECT_DIR$" />
-  </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_16" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
-    <option name="id" value="jpab" />
+    <option name="id" value="Android" />
   </component>
 </project>

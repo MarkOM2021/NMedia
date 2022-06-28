@@ -29,4 +29,9 @@
     <string name="error_loading">Something went wrong. Try again later</string>
     <string name="server_error">Server has not sent response. Try again</string>
     <string name="retry_loading_server" >Try again</string>
+    <string name="menu_save">Save</string>
+    <string name="description_photo">Photo description</string>
+    <string name="remove">Remove photo</string>
+    <string name="description_select_photo">Select photo</string>
+    <string name="description_take_photo">Take photo</string>
 </resources>

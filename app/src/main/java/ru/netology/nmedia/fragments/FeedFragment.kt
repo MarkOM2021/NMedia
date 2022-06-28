@@ -1,7 +1,6 @@
 package ru.netology.nmedia.fragments
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -93,6 +92,11 @@ class FeedFragment : Fragment() {
                     .show()
             }
             binding.swiperefresh.isRefreshing = state.refreshing
+        }
+
+        viewModel.newerCount.observe(viewLifecycleOwner) { state ->
+            // TODO: just log it, interaction must be in homework
+            println(state)
         }
 
         viewModel.edited.observe(viewLifecycleOwner) { post ->
