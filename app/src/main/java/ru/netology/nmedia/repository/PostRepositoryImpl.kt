@@ -31,11 +31,12 @@ class PostRepositoryImpl(private val dao: PostDao) : PostRepository {
 
     override suspend fun load() {
         try {
-            val result = PostsApi.api.getAll()
-            if (!result.isSuccessful) {
-                throw ApiError(result.code(), result.message())
+            val response = PostsApi.api.getAll()
+            if (!response.isSuccessful) {
+                throw ApiError(response.code(), response.message())
             }
-            val body = result.body() ?: throw ApiError(result.code(), result.message())
+
+            val body = response.body() ?: throw ApiError(response.code(), response.message())
             dao.insert(body.toEntity())
         } catch (e: IOException) {
             throw NetworkError

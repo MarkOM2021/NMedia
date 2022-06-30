@@ -4,12 +4,12 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 32
 
     defaultConfig {
         applicationId "ru.netology.nmedia"
         minSdkVersion 22
-        targetSdkVersion 31
+        targetSdkVersion 32
         versionCode 1
         versionName "1.0"
 
@@ -47,7 +47,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-cast-framework:21.0.1'
     implementation 'com.github.dhaval2404:imagepicker:2.1'
     def core_version = "1.8.0"
-    def appcompat_version = "1.4.1"
+    def appcompat_version = "1.4.2"
     def constraintlayout_version = "2.1.4"
     def swiperefreshlayout_version = "1.1.0"
     def coordinatorlayout_version = "1.2.0"
@@ -58,7 +58,7 @@ dependencies {
     def activity_version = "1.4.0"
     def lifecycle_version = "2.4.1"
     def mdc_version = "1.6.1"
-    def nav_version = "2.4.1"
+    def nav_version = "2.4.2"
     def room_version = "2.4.2"
     def firebase_version = "30.2.0"
     def glide_version = "4.13.2"
